@@ -19,10 +19,10 @@
 
         <div class="flex justify-between">
             <p class="text-sm">{{$project->created_at}}</p>
-            <div>
-                <x-tag>test</x-tag>
-                <x-tag>test</x-tag>
-                <x-tag>test</x-tag>
+            <div class="flex flex-wrap gap-1">
+                @foreach($project->tags as $tag)
+                    <x-tag>{{$tag->name}}</x-tag>
+                @endforeach
             </div>
         </div>
     </div>
