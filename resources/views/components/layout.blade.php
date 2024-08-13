@@ -18,13 +18,19 @@
             </div>
 
             <div class="space-x-6 font-bold ">
-                <a href="#" class="hover:underline">Projects</a>
-                <a href="#" class="hover:underline">Users</a>
-                <a href="#" class="hover:underline">About</a>
+                <x-nav-link href="/projects">Projects</x-nav-link>
+                <x-nav-link href="/companies">Companies</x-nav-link>
+                <x-nav-link href="/about">About us</x-nav-link>
             </div>
 
-            <div >
-                <a href="#">Publish a Project</a>
+            <div>
+                @auth
+                    <a href="#">Publish a Project</a>
+                @endauth
+                @guest
+                    <a href="{{url('register')}}">Register</a>
+                    <a href="{{url('login')}}">Login</a>
+                @endguest
             </div>
         </nav>
 
