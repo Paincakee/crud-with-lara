@@ -2,8 +2,10 @@
     'project'
 ])
 
-<div class="bg-white/5 rounded-2xl p-4 flex flex-col text-center">
-    <div class="self-start text-sm">Laravel</div>
+<div class="relative bg-white/5 rounded-2xl p-4 flex flex-col text-center hover:bg-white/10 transition duration-300">
+    <a href="{{ route('project.show', ['project' => $project])}}" class="absolute inset-0"></a>
+
+    <div class="self-start text-sm text-white/35">{{$project->user->name}}</div>
 
     <div class="font-bold py-5 max-h-[88px] truncate">
         <h3>{{$project->title}}</h3>
@@ -11,9 +13,9 @@
     </div>
 
     <div class="flex justify-between items-center">
-        <div class="flex flex-wrap gap-1">
+        <div class="flex flex-wrap gap-1 z-10">
             @foreach($project->tags as $tag)
-                <x-tag>{{$tag->name}}</x-tag>
+                <x-tag :tag="$tag"></x-tag>
             @endforeach
         </div>
 

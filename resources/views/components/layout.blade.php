@@ -17,10 +17,10 @@
                 </a>
             </div>
 
-            <div class="space-x-6 font-bold ">
-                <x-nav-link href="{{url('project')}}">Projects</x-nav-link>
-                <x-nav-link href="{{url('company')}}">Companies</x-nav-link>
-                <x-nav-link href="{{url('about')}}">About us</x-nav-link>
+            <div class="space-x-6 font-bold flex">
+                <x-nav-link :active="request()->is('project')" href="{{url('project')}}">Projects</x-nav-link>
+                <x-nav-link :active="request()->is('company')" href="{{url('company')}}">Companies</x-nav-link>
+                <x-nav-link :active="request()->is('about')" href="{{url('about')}}">About us</x-nav-link>
             </div>
 
             <div>

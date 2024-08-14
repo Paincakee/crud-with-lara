@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 
 Route::get('/', function () {
-    $featuredProjects = Project::with('tags')->where('featured', true)->get();
-    $projects = Project::with('tags')->simplePaginate(10);
+    $featuredProjects = Project::with('tags', 'user')->where('featured', true)->get();
+    $projects = Project::with('tags', 'user')->simplePaginate(10);
     $tags = Tag::all();
 
     return view('welcome', [

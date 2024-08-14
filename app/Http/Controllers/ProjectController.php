@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::with('tags', 'user')->simplePaginate(15);
+        $projects = Project::with('tags', 'user');
+
+        // Check if the 'tag' query parameter is present
+        if ($request->has('tag')) {
+            $tag = $request->input('tag');
+
+            // Filter projects by the tag
+            $projects = $projects->whereHas('tags', function ($query) use ($tag) {
+                $query->where('name', $tag);
+            });
+        }
+
+        // Paginate the results and append the 'tag' query parameter
+        $projects = $projects->simplePaginate(15)->appends(['tag' => $request->input('tag')]);
 
         return view('projects.index', [
             'projects' => $projects

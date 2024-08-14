@@ -7,7 +7,6 @@
                 @foreach($featuredProjects as $project)
                     <x-project-card :project="$project"></x-project-card>
                 @endforeach
-
             </div>
         </section>
 
@@ -15,7 +14,7 @@
             <x-section-heading>Tags</x-section-heading>
             <div class="mt-3 flex flex-wrap gap-2">
                 @foreach($tags as $tag)
-                    <x-tag size="sm">{{ $tag->name }}</x-tag>
+                    <x-tag size="sm" :tag="$tag">{{ $tag->name }}</x-tag>
                 @endforeach
             </div>
         </section>
@@ -28,7 +27,7 @@
                 @foreach($projects as $project)
                         <x-project-card-full :project="$project"></x-project-card-full>
                 @endforeach
-
+                {{ $projects->links() }}
             </div>
         </section>
     </div>
