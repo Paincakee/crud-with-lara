@@ -12,15 +12,15 @@
     <div class="px-10 text-white">
         <nav class="flex justify-between items-center py-4 border-b border-white/25">
             <div>
-                <a href="#">
+                <a href="{{url('/')}}">
                     <img src="http://picsum.photos/seed/{{rand(0, 10000)}}/50/50" alt="">
                 </a>
             </div>
 
             <div class="space-x-6 font-bold ">
-                <x-nav-link href="/projects">Projects</x-nav-link>
-                <x-nav-link href="/companies">Companies</x-nav-link>
-                <x-nav-link href="/about">About us</x-nav-link>
+                <x-nav-link href="{{url('project')}}">Projects</x-nav-link>
+                <x-nav-link href="{{url('company')}}">Companies</x-nav-link>
+                <x-nav-link href="{{url('about')}}">About us</x-nav-link>
             </div>
 
             <div>

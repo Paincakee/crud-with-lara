@@ -12,7 +12,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
