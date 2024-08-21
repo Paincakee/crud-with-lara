@@ -21,8 +21,8 @@ Route::delete('/logout', [SessionController::class, 'destroy'])->name('logout');
  */
 
 Route::get('/', function () {
-    $featuredProjects = Project::with('tags', 'user')->where('featured', true)->get();
-    $projects = Project::with('tags', 'user')->simplePaginate(10);
+    $featuredProjects = Project::with('tags', 'user', 'user.roles')->where('featured', true)->get();
+    $projects = Project::with('tags', 'user', 'user.roles')->simplePaginate(10);
     $tags = Tag::all();
 
     return view('welcome', [
