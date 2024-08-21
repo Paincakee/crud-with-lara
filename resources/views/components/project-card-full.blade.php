@@ -11,7 +11,12 @@
 
     <div class="px-5 flex-1 flex flex-col justify-between">
         <div class="flex justify-between">
-            <h5 class="text-sm text-white/35">{{$project->user->name}}</h5>
+            <h5 class="text-sm text-white/35">
+                {{$project->user->name}}
+                @foreach($project->user->roles as $role)
+                    {{$role->name}}
+                @endforeach
+                </h5>
             <div class="z-10">
                 <x-tag :tag="$project->tags[0]"></x-tag>
             </div>

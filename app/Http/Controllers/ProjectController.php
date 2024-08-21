@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index(Request $request)
     {
-        $projects = Project::with('tags', 'user');
+        $projects = Project::with('tags', 'user', 'user.roles');
 
         // Check if the 'tag' query parameter is present
         if ($request->has('tag')) {
