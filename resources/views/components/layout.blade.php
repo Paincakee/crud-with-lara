@@ -11,10 +11,13 @@
 <body class="bg-black">
     <div class="px-10 text-white">
         <nav class="flex justify-between items-center py-4 border-b border-white/25">
-            <div>
+            <div class="flex space-x-6 font-bold">
                 <a href="{{url('/')}}">
                     <img src="http://picsum.photos/seed/{{rand(0, 10000)}}/50/50" alt="">
                 </a>
+                @auth
+                <x-nav-link :active="request()->is('account')" href="{{url('account')}}">{{auth()->user()->name}}</x-nav-link>
+                @endauth
             </div>
 
             <div class="space-x-6 font-bold flex">
@@ -25,6 +28,15 @@
 
             <div>
                 @auth
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
                     <a href="#">Publish a Project</a>
                 @endauth
                 @guest

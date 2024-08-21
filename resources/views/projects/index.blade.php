@@ -6,5 +6,4 @@
         @endforeach
         {{ $projects->links() }}
     </div>
-
 </x-layout>
