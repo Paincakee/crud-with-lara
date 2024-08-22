@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -33,4 +34,42 @@ class ProjectController extends Controller
     {
         return $project->user;
     }
+
+    public function create()
+    {
+        $tags = Tag::all();
+
+        return view('projects.create', [
+            'tags' => $tags
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'featured' => ['nullable'], // No need for 'boolean' validation here
+            'tags' => ['required', 'array'], // Ensure tags is an array
+            'tags.*' => ['exists:tags,id'], // Ensure each tag exists in the tags table
+        ]);
+
+        // Convert the checkbox value to boolean
+        $validated['featured'] = $request->has('featured');
+
+        // Add the current user's ID to the validated data
+        $validated['user_id'] = auth()->id();
+
+        // Create the Project without tags
+        $project = Project::create($validated);
+
+        // Attach tags to the project
+        $project->tags()->attach($validated['tags']);
+
+        // Redirect to the projects index page
+        return redirect()->route('project.index');
+    }
+
+
 }
