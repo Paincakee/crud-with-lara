@@ -37,7 +37,7 @@
                         Logout
                     </a>
 
-                    <a href="#">Publish a Project</a>
+                    <a href="{{route('project.create')}}">Publish a Project</a>
                 @endauth
                 @guest
                     <a href="{{url('register')}}">Register</a>

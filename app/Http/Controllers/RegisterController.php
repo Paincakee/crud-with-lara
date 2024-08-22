@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -10,6 +11,7 @@ class RegisterController extends Controller
 {
     public function create()
     {
+
         return view('auth.register');
     }
 
@@ -25,7 +27,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect()->route('dashboard');
 
     }
 }
